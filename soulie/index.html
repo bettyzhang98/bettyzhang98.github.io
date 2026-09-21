@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Soulie: an emotional wellness product for children and parents | Yi (Betty) Zhang</title>
+<meta name="description" content="Product case study: Soulie helps children ages 4 to 10 understand and express emotions, and helps parents respond with more empathy and confidence.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Soulie: an emotional wellness product for children and parents">
+<meta property="og:description" content="Product case study by Yi (Betty) Zhang: requirements, an AI-assisted iPhone prototype, and the design principles behind it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🫧%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+  :root {
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+
+    --bg: #F4F5F8;
+    --surface: #FFFFFF;
+    --ink: #1D2440;
+    --ink-soft: #454D6B;
+    --line: #D6DAE6;
+    --line-strong: #B4BACD;
+    --focus: #2D5CB0;
+    --accent: #8A6035;
+
+    /* Soulie's own pastels, taken from the app. Fixed in both themes; text on them is always dark ink. */
+    --yellow: #FFD34E;
+    --mint: #B2DCCE;
+    --lilac: #C8B6E8;
+    --peach: #F9D3BA;
+    --on-pastel: #1D2440;
+
+    --serif: "Young Serif", Georgia, "Times New Roman", serif;
+    --sans: "Lexend", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141830; --surface: #1C2140; --ink: #EDEFF7; --ink-soft: #B3B9D2;
+      --line: #2E3557; --line-strong: #4A5378; --focus: #7BA3EC; --accent: #D9A96F;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141830; --surface: #1C2140; --ink: #EDEFF7; --ink-soft: #B3B9D2;
+    --line: #2E3557; --line-strong: #4A5378; --focus: #7BA3EC; --accent: #D9A96F;
+  }
+
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 84px); -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 1.0625rem; line-height: 1.65; }
+  img, svg { max-width: 100%; }
+  a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+
+  .wrap { width: 100%; max-width: 1120px; margin-inline: auto; padding-inline: clamp(20px, 5vw, 48px); }
+  .skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: var(--bg); padding: 10px 16px; z-index: 20; }
+  .skip:focus { left: 12px; }
+
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; text-wrap: balance; }
+  h1 { font-size: clamp(3.2rem, 9vw, 6.5rem); line-height: 1; letter-spacing: -0.015em; }
+  h2 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); line-height: 1.15; }
+  h3 { font-size: 1.3rem; line-height: 1.25; }
+  p { margin: 0; }
+  .measure { max-width: 60ch; }
+  .soft { color: var(--ink-soft); }
+
+  .site-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line); }
+  .site-header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 28px; padding-block: 14px; }
+  .brand { font-family: var(--serif); font-size: 1.2rem; text-decoration: none; }
+  .nav { display: flex; flex-wrap: wrap; gap: 4px 22px; font-size: 0.9rem; }
+  .nav a { text-decoration: none; padding: 4px 0; border-bottom: 2px solid transparent; }
+  .nav a:hover { border-bottom-color: var(--ink); }
+
+  .btn { display: inline-block; padding: 13px 22px; border: 2px solid var(--ink); border-radius: 4px; font-weight: 500; font-size: 0.98rem; text-decoration: none; line-height: 1.2; transition: transform 0.15s ease; }
+  .btn:hover { transform: translateY(-2px); text-decoration: none; }
+  .btn-fill { background: var(--ink); color: var(--bg); }
+  .btn-line { background: transparent; color: var(--ink); }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* Hero */
+  .hero { padding-block: clamp(40px, 8vw, 88px) clamp(48px, 7vw, 88px); }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: clamp(28px, 6vw, 80px); align-items: center; }
+  .hero .tagline { font-family: var(--serif); font-size: clamp(1.3rem, 2.4vw, 1.75rem); line-height: 1.3; margin: 22px 0 22px; max-width: 24ch; }
+  .hero .lead { margin-bottom: 30px; }
+
+  .phones { display: flex; gap: clamp(12px, 3vw, 24px); justify-content: center; max-width: 480px; margin-inline: auto; }
+  .phone { flex: 1 1 0; min-width: 0; margin: 0; animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.25, 1) both; }
+  .phone:nth-child(2) { margin-top: 56px; animation-delay: 0.15s; }
+  .phone img, .shot img { display: block; width: 100%; height: auto; border-radius: clamp(18px, 3vw, 28px); background: var(--surface); }
+  .phone img { box-shadow: 0 18px 44px rgba(29, 36, 64, 0.22); }
+  @keyframes rise { from { opacity: 0; transform: translateY(32px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Sections */
+  .sec { padding-block: clamp(44px, 6vw, 84px); border-top: 1px solid var(--line); }
+  .row { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: clamp(20px, 4vw, 56px); }
+  .row > h2 { font-size: clamp(1.5rem, 2.4vw, 1.9rem); }
+  .body > * + * { margin-top: 18px; }
+
+  .glance { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px 28px; margin: 0; padding-block: 26px; border-block: 2px solid var(--ink); }
+  .glance dt { font-size: 0.85rem; color: var(--ink-soft); }
+  .glance dd { margin: 2px 0 0; font-weight: 500; }
+
+  .people { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .people div { border-left: 3px solid var(--accent); padding-left: 16px; }
+  .people b { display: block; font-family: var(--serif); font-weight: 400; font-size: 1.25rem; margin-bottom: 4px; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
+  .chips li { border: 1.5px solid var(--line-strong); border-radius: 999px; padding: 5px 16px; font-size: 0.95rem; background: var(--surface); }
+
+  .rings { width: 100%; max-width: 380px; display: block; margin-top: 8px; }
+  .ring-label { font-family: var(--serif); font-size: 19px; }
+  .fig-cap { font-size: 0.88rem; color: var(--ink-soft); margin-top: 8px; }
+
+  /* Gallery */
+  .gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px clamp(16px, 2.4vw, 32px); margin: 0; padding: 0; list-style: none; }
+  .shot { margin: 0; }
+  .shot img { border: 1px solid var(--line); box-shadow: 0 10px 28px rgba(29, 36, 64, 0.12); }
+  .shot .swatch { display: block; height: 6px; border-radius: 3px; margin: 16px 0 10px; }
+  .shot h3 { font-size: 1.1rem; margin-bottom: 4px; }
+  .shot p { font-size: 0.92rem; line-height: 1.55; color: var(--ink-soft); }
+
+  .steps { list-style: none; margin: 0; padding: 0; counter-reset: s; display: grid; max-width: 62ch; }
+  .steps li { counter-increment: s; position: relative; padding: 0 0 26px 54px; }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: -2px; width: 34px; height: 34px; border-radius: 50%; background: var(--yellow); color: var(--on-pastel); font-weight: 500; display: grid; place-items: center; font-size: 0.95rem; }
+  .steps li::after { content: ""; position: absolute; left: 16px; top: 36px; bottom: 4px; width: 2px; background: var(--line-strong); }
+  .steps li:last-child { padding-bottom: 0; }
+  .steps li:last-child::after { display: none; }
+  .steps b { font-weight: 500; display: block; }
+
+  .principles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+  .principles > div { padding: 20px 24px 22px 0; border-bottom: 1px solid var(--line); }
+  .principles > div:nth-child(even) { padding-left: 24px; padding-right: 0; border-left: 1px solid var(--line); }
+  .principles h3 { margin-bottom: 4px; }
+  .principles .proto { margin-top: 10px; font-size: 0.92rem; color: var(--ink-soft); }
+  .principles .proto b { font-weight: 500; color: var(--ink); }
+
+  .contact h2 { font-size: clamp(1.9rem, 3.6vw, 2.75rem); margin-bottom: 16px; max-width: 20ch; }
+  .contact p { margin-bottom: 26px; }
+  footer { padding-block: 28px 40px; border-top: 1px solid var(--line); font-size: 0.85rem; color: var(--ink-soft); }
+
+  @media (max-width: 960px) {
+    .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .phones { margin-inline: 0; max-width: 400px; }
+    .row { grid-template-columns: 1fr; }
+    .glance { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 640px) {
+    body { font-size: 1rem; }
+    .people, .principles { grid-template-columns: 1fr; }
+    .principles > div:nth-child(even) { padding-left: 0; border-left: 0; }
+    .principles > div { padding-right: 0; }
+    .gallery { gap: 24px 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .phone { animation: none; }
+    .btn { transition: none; }
+    .btn:hover { transform: none; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#opportunity">Skip to case study</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../">Yi (Betty) Zhang</a>
+    <nav class="nav" aria-label="Case study sections">
+      <a href="../">Portfolio</a>
+      <a href="#product">Product</a>
+      <a href="#prototype">Prototype</a>
+      <a href="#principles">Principles</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Soulie</h1>
+        <p class="tagline">An emotional wellness product for children and their parents.</p>
+        <p class="lead measure soft">Children ages 4 to 10 often feel more than they can name. Soulie helps them understand and express their emotions, and helps parents respond with more empathy and confidence.</p>
+        <div class="btn-row">
+          <a class="btn btn-fill" href="#prototype">See the prototype</a>
+          <a class="btn btn-line" href="../">Back to portfolio</a>
+        </div>
+      </div>
+
+      <div class="phones">
+        <figure class="phone"><img src="../assets/soulie-companion.webp" width="720" height="1565" alt="Soulie companion screen. A smiling heart says hi and offers calming choices: Purr Pet, The Window, and Worry Jar."></figure>
+        <figure class="phone"><img src="../assets/soulie-journal.webp" width="720" height="1565" alt="Soulie Journal Garden screen with buttons to save a moment as a photo, voice note, note, or drawing."></figure>
+      </div>
+    </div>
+  </div>
+
+  <section class="sec">
+    <div class="wrap">
+      <dl class="glance">
+        <div><dt>Project type</dt><dd>Product development</dd></div>
+        <div><dt>Year</dt><dd>2026</dd></div>
+        <div><dt>Users</dt><dd>Children ages 4 to 10 and parents</dd></div>
+        <div><dt>My work</dt><dd>Product definition, requirements, and AI-assisted prototyping</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="sec" id="opportunity" style="border-top:0; padding-top:0">
+    <div class="wrap row">
+      <h2>The opportunity</h2>
+      <div class="body">
+        <p class="measure">I saw an opportunity to help children better understand and express their emotions. Young children rarely have the words for what they feel, and the adults around them are left guessing.</p>
+        <p class="measure">Soulie works on both sides of that gap. Children get tools to notice and express what they feel. Parents get what they need to respond with greater empathy and confidence.</p>
+        <div class="people">
+          <div><b>Children, ages 4 to 10</b>Understand and express their emotions.</div>
+          <div><b>Parents</b>Respond to their child's emotional needs with empathy and confidence.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="product">
+    <div class="wrap row">
+      <h2>Defining the product</h2>
+      <div class="body">
+        <p class="measure">I defined primary and secondary users, the product goals, the core user journeys, and the MVP features. The MVP is built around a three-stage experience: Know Yourself, Choose Yourself, and Give Yourself.</p>
+
+        <figure style="margin:0">
+          <svg class="rings" viewBox="0 0 420 420" role="img" aria-label="Three concentric circles. From the center outward: Know Yourself, Choose Yourself, Give Yourself.">
+            <circle cx="210" cy="210" r="200" fill="var(--lilac)"/>
+            <circle cx="210" cy="210" r="140" fill="var(--mint)"/>
+            <circle cx="210" cy="210" r="80" fill="var(--yellow)"/>
+            <text class="ring-label" x="210" y="46" text-anchor="middle" fill="var(--on-pastel)">Give Yourself</text>
+            <text class="ring-label" x="210" y="106" text-anchor="middle" fill="var(--on-pastel)">Choose Yourself</text>
+            <text class="ring-label" x="210" y="205" text-anchor="middle" fill="var(--on-pastel)">Know</text>
+            <text class="ring-label" x="210" y="230" text-anchor="middle" fill="var(--on-pastel)">Yourself</text>
+          </svg>
+          <figcaption class="fig-cap">The three-stage experience, from the inside out.</figcaption>
+        </figure>
+
+        <p class="measure">I then wrote a product requirements document. It covers:</p>
+        <ul class="chips" aria-label="Topics covered in the product requirements document">
+          <li>User needs</li>
+          <li>Feature architecture</li>
+          <li>Interaction principles</li>
+          <li>Emotional check-ins</li>
+          <li>Self-guided support tools</li>
+          <li>Growth journaling</li>
+          <li>Parent-facing insights</li>
+          <li>Privacy considerations</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="prototype">
+    <div class="wrap">
+      <div class="measure" style="margin-bottom: 36px">
+        <h2 style="margin-bottom: 14px">Inside the prototype</h2>
+        <p class="soft">These screens are from the iPhone prototype I built with AI-assisted development tools, working from the requirements document.</p>
+      </div>
+      <ul class="gallery">
+        <li class="shot">
+          <img src="../assets/soulie-journal.webp" width="720" height="1565" loading="lazy" alt="Journal Garden screen with a Save a tiny moment card and buttons for Photo, Voice, Note, and Draw.">
+          <span class="swatch" style="background: var(--lilac)"></span>
+          <h3>Journal Garden</h3>
+          <p>Save a tiny moment as a photo, a voice note, a written note, or a drawing.</p>
+        </li>
+        <li class="shot">
+          <img src="../assets/soulie-calm.webp" width="720" height="1565" loading="lazy" alt="Calm Choices screen with filters for See, Hear, Touch, and Breathe, and tools named Glitter Jar, Bubble Breathing, and Wood Fish.">
+          <span class="swatch" style="background: var(--mint)"></span>
+          <h3>Calm Choices</h3>
+          <p>Tools are grouped by See, Hear, Touch, and Breathe. Glitter Jar, Bubble Breathing, and Wood Fish each start in one tap.</p>
+        </li>
+        <li class="shot">
+          <img src="../assets/soulie-growth.webp" width="720" height="1565" loading="lazy" alt="Growth screen with a monthly emotions flower chart and a color-coded monthly calendar.">
+          <span class="swatch" style="background: var(--yellow)"></span>
+          <h3>Growth</h3>
+          <p>A flower chart of the month's emotions and a color-coded calendar. Tap a day to see check-ins, journal moments, and a short summary.</p>
+        </li>
+        <li class="shot">
+          <img src="../assets/soulie-companion.webp" width="720" height="1565" loading="lazy" alt="Soulie companion screen. A smiling heart offers Purr Pet, The Window, and Worry Jar, with buttons to tell what happened or ask for more options.">
+          <span class="swatch" style="background: var(--peach)"></span>
+          <h3>Soulie, the companion</h3>
+          <p>A friendly heart offers a few calming choices, invites the child to share what happened, and lets them ask for different options.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap row">
+      <h2>Building it with AI</h2>
+      <div class="body">
+        <p class="measure">I used AI-assisted development tools, including OpenAI Codex, to turn the requirements into working prototype functionality. The requirements document stayed the source of truth, and I refined the product as the prototype took shape.</p>
+        <ol class="steps">
+          <li><b>Write the requirements</b>Users, journeys, features, interaction principles, and privacy considerations.</li>
+          <li><b>Turn them into a prototype</b>Use OpenAI Codex to build prototype functionality from the requirements.</li>
+          <li><b>Refine and repeat</b>Iterate on product flows, features, and implementation.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="principles">
+    <div class="wrap row">
+      <h2>Four things I balanced</h2>
+      <div class="body">
+        <p class="measure">Applying an education-informed perspective meant holding four needs in tension throughout product planning. Each one is a question I kept asking, and you can see the answers in the screens above.</p>
+        <div class="principles">
+          <div>
+            <h3>Child usability</h3>
+            <p class="soft">Can a child use this without help?</p>
+            <p class="proto"><b>In the prototype:</b> short instructions on every screen, like "Pick one tiny tool," and tools that start in one tap.</p>
+          </div>
+          <div>
+            <h3>Developmental appropriateness</h3>
+            <p class="soft">Does it fit what a 4-year-old and a 10-year-old can understand?</p>
+            <p class="proto"><b>In the prototype:</b> calming tools are organized by the senses and have playful names like Glitter Jar and Wood Fish.</p>
+          </div>
+          <div>
+            <h3>Caregiver needs</h3>
+            <p class="soft">Does it give parents something useful to act on?</p>
+            <p class="proto"><b>In the prototype:</b> the Growth view shows monthly patterns and what helped, and the requirements include parent-facing insights.</p>
+          </div>
+          <div>
+            <h3>User agency</h3>
+            <p class="soft">Does the child stay in charge of their own choices?</p>
+            <p class="proto"><b>In the prototype:</b> the child picks their own tool, and can say "I don't like these" to get more options.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap row">
+      <h2>Why an educator built this</h2>
+      <div class="body">
+        <p class="measure">I work in a kindergarten classroom, and I studied early childhood education at Teachers College, Columbia University. Watching how young children show feelings before they can explain them shaped how I planned Soulie. It's also why I'm moving into product management: I want to build for the people I've spent my career learning from.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec contact" id="contact">
+    <div class="wrap">
+      <h2>Questions about Soulie, or want to talk product?</h2>
+      <p class="measure">I'm looking for product management and tech internships. I'd be glad to hear from you.</p>
+      <div class="btn-row">
+        <a class="btn btn-fill" href="mailto:zybetty98@gmail.com">Email zybetty98@gmail.com</a>
+        <a class="btn btn-line" href="../assets/Yi-Zhang-Resume.pdf" download>Download resume</a>
+        <a class="btn btn-line" href="https://www.linkedin.com/in/betty-yizhang/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">San Jose, CA. &copy; 2026 Yi (Betty) Zhang. <a href="../">Back to portfolio</a></div>
+</footer>
+</body>
+</html>

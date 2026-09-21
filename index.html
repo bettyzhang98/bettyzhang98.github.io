@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yi (Betty) Zhang | Product and project management</title>
+<meta name="description" content="Educator moving into product and project management. Product requirements, AI-assisted prototyping, and data projects, grounded in years of designing learning experiences for children and families.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🧱%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Yi (Betty) Zhang | Product and project management">
+<meta property="og:description" content="Educator moving into product and project management. Product requirements, AI-assisted prototyping, and data projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+  :root {
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+
+    --bg: #F4F5F8;
+    --surface: #FFFFFF;
+    --ink: #1D2440;
+    --ink-soft: #454D6B;
+    --line: #D6DAE6;
+    --line-strong: #B4BACD;
+
+    /* Objects (blocks) keep their own colors in both themes */
+    --blk-green: #2A7F5C;
+    --blk-blue: #2D5CB0;
+    --blk-red: #C63828;
+    --blk-yellow: #F2BC3A;
+    --blk-ink: #1D2440;
+
+    /* Accents used on text-adjacent graphics */
+    --acc-red: #C63828;
+    --acc-blue: #2D5CB0;
+    --acc-yellow: #C98F0A;
+    --acc-green: #2A7F5C;
+
+    --red-t1: #F5D3CD;
+    --red-t2: #EBA69C;
+    --on-red: #FFFFFF;
+    --focus: #2D5CB0;
+
+    --serif: "Young Serif", Georgia, "Times New Roman", serif;
+    --sans: "Lexend", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141830;
+      --surface: #1C2140;
+      --ink: #EDEFF7;
+      --ink-soft: #B3B9D2;
+      --line: #2E3557;
+      --line-strong: #4A5378;
+      --acc-red: #EE6A57;
+      --acc-blue: #7BA3EC;
+      --acc-yellow: #F5C95A;
+      --acc-green: #5CC49A;
+      --red-t1: #3B2634;
+      --red-t2: #6B3538;
+      --on-red: #1D2440;
+      --focus: #7BA3EC;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141830;
+    --surface: #1C2140;
+    --ink: #EDEFF7;
+    --ink-soft: #B3B9D2;
+    --line: #2E3557;
+    --line-strong: #4A5378;
+    --acc-red: #EE6A57;
+    --acc-blue: #7BA3EC;
+    --acc-yellow: #F5C95A;
+    --acc-green: #5CC49A;
+    --red-t1: #3B2634;
+    --red-t2: #6B3538;
+    --on-red: #1D2440;
+    --focus: #7BA3EC;
+  }
+
+  *, *::before, *::after { box-sizing: inherit; }
+  html {
+    scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 84px);
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    font-weight: 400;
+  }
+  img, svg { max-width: 100%; }
+  a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+
+  .wrap { width: 100%; max-width: 1120px; margin-inline: auto; padding-inline: clamp(20px, 5vw, 48px); }
+  .skip {
+    position: absolute; left: -999px; top: 8px; background: var(--ink); color: var(--bg);
+    padding: 10px 16px; z-index: 20;
+  }
+  .skip:focus { left: 12px; }
+
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; text-wrap: balance; }
+  h1 { font-size: clamp(2.5rem, 6.2vw, 4.5rem); line-height: 1.05; letter-spacing: -0.01em; }
+  h2 { font-size: clamp(1.85rem, 3.6vw, 2.75rem); line-height: 1.12; }
+  h3 { font-size: clamp(1.4rem, 2.4vw, 1.75rem); line-height: 1.2; }
+  p { margin: 0; }
+  .measure { max-width: 60ch; }
+  .soft { color: var(--ink-soft); }
+
+  /* Header */
+  .site-header {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+    background: var(--bg); border-bottom: 1px solid var(--line);
+  }
+  .site-header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 28px; padding-block: 14px; }
+  .brand { font-family: var(--serif); font-size: 1.2rem; text-decoration: none; }
+  .nav { display: flex; flex-wrap: wrap; gap: 4px 22px; font-size: 0.9rem; }
+  .nav a { text-decoration: none; padding: 4px 0; border-bottom: 2px solid transparent; }
+  .nav a:hover { border-bottom-color: var(--ink); text-decoration: none; }
+
+  /* Buttons */
+  .btn {
+    display: inline-block; padding: 13px 22px; border: 2px solid var(--ink); border-radius: 4px;
+    font-weight: 500; font-size: 0.98rem; text-decoration: none; line-height: 1.2;
+  }
+  .btn-fill { background: var(--ink); color: var(--bg); }
+  .btn-line { background: transparent; color: var(--ink); }
+  .btn:hover { text-decoration: none; transform: translateY(-2px); }
+  .btn { transition: transform 0.15s ease; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* Hero */
+  .hero { padding-block: clamp(40px, 8vw, 96px) clamp(56px, 8vw, 104px); }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
+  .hero h1 { margin-bottom: 26px; }
+  .hero .lead { font-size: 1.15rem; line-height: 1.65; margin-bottom: 14px; }
+  .hero .status { margin-bottom: 32px; font-size: 0.98rem; }
+
+  /* Tower */
+  .tower { width: 100%; max-width: 400px; margin-inline: auto; }
+  .stack { display: flex; flex-direction: column-reverse; align-items: center; gap: 6px; }
+  .block {
+    --i: 0;
+    height: 62px; border: 0; border-radius: 6px; cursor: pointer;
+    font-family: var(--sans); font-size: 0.98rem; font-weight: 500; letter-spacing: 0.005em;
+    display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 10px;
+    animation: drop 0.55s cubic-bezier(0.2, 0.8, 0.25, 1) both;
+    animation-delay: calc(var(--i) * 150ms);
+  }
+  .block[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--ink); }
+  .b1 { width: 100%; background: var(--blk-green); color: #fff; --i: 0; }
+  .b2 { width: 85%; background: var(--blk-blue); color: #fff; --i: 1; }
+  .b3 { width: 70%; background: var(--blk-red); color: #fff; --i: 2; }
+  .b4 { width: 58%; background: var(--blk-yellow); color: #1D2440; --i: 3; }
+  .shelf { height: 8px; background: var(--ink); border-radius: 2px; margin-top: 8px; }
+  .tower-cap { margin-top: 20px; min-height: 5.6em; font-size: 0.98rem; }
+  .tower-cap strong { font-family: var(--serif); font-weight: 400; font-size: 1.15rem; display: block; margin-bottom: 2px; }
+  .tower-hint { margin-top: 10px; font-size: 0.85rem; color: var(--ink-soft); }
+  @keyframes drop {
+    from { opacity: 0; transform: translateY(-36px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Sections */
+  section.block-section { padding-block: clamp(56px, 8vw, 104px); border-top: 1px solid var(--line); }
+  .section-head { margin-bottom: clamp(32px, 5vw, 56px); max-width: 640px; }
+  .section-head p { margin-top: 14px; }
+
+  /* Projects */
+  .project { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: clamp(20px, 4vw, 56px); padding-block: clamp(36px, 5vw, 60px); border-top: 2px solid var(--ink); }
+  .project + .project { margin-top: 0; }
+  .proj-meta { display: flex; flex-direction: column; gap: 6px; align-content: start; font-size: 0.92rem; }
+  .proj-meta svg { width: 28px; height: 28px; margin-bottom: 8px; }
+  .proj-meta .cat { font-weight: 500; }
+  .proj-body h3 { margin-bottom: 14px; }
+  .proj-body .summary { margin-bottom: 22px; }
+  .did { list-style: none; margin: 0 0 8px; padding: 0; display: grid; gap: 12px; max-width: 62ch; }
+  .did li { position: relative; padding-left: 22px; }
+  .did li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 9px; height: 9px; background: var(--accent); }
+  .did strong { font-weight: 500; }
+
+  .visual { margin: 30px 0 6px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
+  .chips li { border: 1.5px solid var(--line-strong); border-radius: 999px; padding: 4px 14px; font-size: 0.9rem; background: var(--surface); }
+  .visual-label { font-size: 0.9rem; font-weight: 500; margin-bottom: 10px; }
+
+  .stages { display: grid; grid-template-columns: repeat(3, 1fr); margin-bottom: 22px; }
+  .stage { padding: 20px 30px 20px 34px; font-family: var(--serif); font-size: 1.15rem; line-height: 1.25; display: flex; align-items: center; min-height: 84px; }
+  .stage:nth-child(1) { background: var(--red-t1); color: var(--ink); clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%); }
+  .stage:nth-child(2) { background: var(--red-t2); color: var(--ink); margin-left: -1px; clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%, 20px 50%); }
+  .stage:nth-child(3) { background: var(--acc-red); color: var(--on-red); margin-left: -1px; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 20px 50%); }
+  .stage span { font-family: var(--sans); font-size: 0.85rem; font-weight: 500; margin-right: 10px; }
+  .audiences { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-bottom: 20px; max-width: 62ch; }
+  .audiences div { border-left: 3px solid var(--acc-red); padding-left: 14px; font-size: 0.95rem; }
+  .audiences b { display: block; font-weight: 500; }
+
+  .bars { display: grid; gap: 14px; max-width: 560px; }
+  .bar-row .name { display: flex; justify-content: space-between; font-size: 0.92rem; margin-bottom: 4px; gap: 12px; }
+  .bar { height: 34px; border-radius: 3px; }
+  .bar.base { background: var(--line-strong); }
+  .bar.model { background: var(--acc-blue); }
+  .bar-note { font-size: 0.85rem; color: var(--ink-soft); margin-top: 12px; max-width: 560px; }
+  .facts { display: flex; flex-wrap: wrap; gap: 8px 36px; margin: 24px 0 0; padding: 0; }
+  .facts div { min-width: 0; }
+  .facts dt { font-size: 0.85rem; color: var(--ink-soft); }
+  .facts dd { margin: 0; font-family: var(--serif); font-size: 1.5rem; line-height: 1.2; }
+
+  .links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 22px; font-size: 0.95rem; font-weight: 500; }
+
+  .shots { display: flex; gap: 16px; margin-top: 28px; overflow-x: auto; padding-bottom: 8px; scroll-snap-type: x proximity; }
+  .shots figure { margin: 0; flex: 0 0 auto; width: clamp(140px, 22vw, 190px); scroll-snap-align: start; }
+  .shots img { display: block; width: 100%; height: auto; border-radius: 18px; border: 1px solid var(--line); background: var(--surface); }
+  .shots figcaption { font-size: 0.85rem; color: var(--ink-soft); margin-top: 8px; }
+
+  /* More work */
+  .more { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 5vw, 64px); margin-top: clamp(40px, 6vw, 72px); }
+  .more h3 { font-size: 1.35rem; margin-bottom: 16px; }
+  .more dl { margin: 0; border-top: 1px solid var(--line); }
+  .more .item { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .more dt { font-weight: 500; }
+  .more dd { margin: 2px 0 0; font-size: 0.95rem; color: var(--ink-soft); }
+
+  /* Approach table */
+  .maptable { width: 100%; border-collapse: collapse; }
+  .maptable caption { text-align: left; }
+  .maptable th { text-align: left; font-weight: 500; font-size: 0.92rem; padding: 0 24px 12px 0; border-bottom: 2px solid var(--ink); }
+  .maptable td { padding: 22px 24px 22px 0; border-bottom: 1px solid var(--line); vertical-align: top; width: 50%; }
+  .maptable td:first-child { font-family: var(--serif); font-size: 1.2rem; line-height: 1.35; }
+  .maptable td:last-child { padding-right: 0; }
+
+  /* Experience */
+  .role { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: clamp(16px, 4vw, 56px); padding-block: 32px; border-top: 1px solid var(--line); }
+  .section-head + .role { border-top: 2px solid var(--ink); }
+  .role .when { font-size: 0.92rem; color: var(--ink-soft); }
+  .role h3 { font-size: 1.4rem; margin-bottom: 2px; }
+  .role .where { font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 14px; }
+  .role ul { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; max-width: 64ch; }
+
+  /* Skills */
+  .skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px clamp(28px, 5vw, 64px); margin: 0; }
+  .skills div { border-top: 2px solid var(--ink); padding-top: 14px; }
+  .skills dt { font-family: var(--serif); font-size: 1.2rem; margin-bottom: 6px; }
+  .skills dd { margin: 0; }
+
+  .edu { display: grid; gap: 0; margin-top: clamp(40px, 6vw, 72px); }
+  .edu h3 { font-size: 1.35rem; margin-bottom: 16px; }
+  .edu-row { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: clamp(16px, 4vw, 56px); padding-block: 16px; border-top: 1px solid var(--line); }
+  .edu-row:last-child { border-bottom: 1px solid var(--line); }
+  .edu-row .when { font-size: 0.92rem; color: var(--ink-soft); }
+  .edu-row b { font-weight: 500; }
+
+  /* Contact */
+  .contact h2 { margin-bottom: 18px; max-width: 18ch; }
+  .contact p { margin-bottom: 28px; }
+  .ext-links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 28px; font-size: 0.95rem; }
+  footer { padding-block: 28px 40px; border-top: 1px solid var(--line); font-size: 0.85rem; color: var(--ink-soft); }
+
+  /* Responsive */
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .tower { max-width: 340px; margin-inline: 0; }
+    .project, .role, .edu-row { grid-template-columns: 1fr; }
+    .proj-meta { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 4px 14px; }
+    .proj-meta svg { margin: 0; width: 24px; height: 24px; }
+    .more, .skills { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    body { font-size: 1rem; }
+    .stages { grid-template-columns: 1fr; }
+    .stage:nth-child(n) { clip-path: none; margin-left: 0; min-height: 0; padding: 14px 18px; }
+    .audiences { grid-template-columns: 1fr; }
+    .maptable, .maptable tbody, .maptable tr, .maptable td { display: block; width: 100%; }
+    .maptable thead { position: absolute; left: -999px; }
+    .maptable tr { padding: 20px 0; border-bottom: 1px solid var(--line); }
+    .maptable td { padding: 0; border: 0; width: 100%; }
+    .maptable td:first-child { margin-bottom: 8px; }
+    .maptable td:last-child::before { content: "In product work: "; font-weight: 500; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .block { animation: none; }
+    .btn { transition: none; }
+    .btn:hover { transform: none; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#work">Skip to selected work</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top">Yi (Betty) Zhang</a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#approach">Approach</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <a href="assets/Yi-Zhang-Resume.pdf" download>Resume</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>I learned product thinking from kindergarteners.</h1>
+        <p class="lead measure">I'm an educator moving into product and project management. I turn classroom observations, parent feedback, and data into learning products, then build prototypes to test them.</p>
+        <p class="status soft measure">I'm looking for product management and tech internships. I'm also studying for an M.S. in Data Analytics at Georgia Tech, expected 2027.</p>
+        <div class="btn-row">
+          <a class="btn btn-fill" href="assets/Yi-Zhang-Resume.pdf" download>Download resume</a>
+          <a class="btn btn-line" href="#work">See selected work</a>
+        </div>
+      </div>
+
+      <div class="tower" id="tower">
+        <div class="stack" role="group" aria-label="How I work, in four steps">
+          <button type="button" class="block b1" data-step="observe" aria-pressed="true">Observe</button>
+          <button type="button" class="block b2" data-step="define" aria-pressed="false">Define</button>
+          <button type="button" class="block b3" data-step="build" aria-pressed="false">Build</button>
+          <button type="button" class="block b4" data-step="test" aria-pressed="false">Test and refine</button>
+        </div>
+        <div class="shelf" aria-hidden="true"></div>
+        <p class="tower-cap" id="towerCap" aria-live="polite"></p>
+        <p class="tower-hint">Stacked like a Montessori Pink Tower. Select a block to read each step.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORK -->
+  <section class="block-section" id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Selected work</h2>
+        <p class="soft">Three projects, each with a different kind of user and a different way of testing whether it worked.</p>
+      </div>
+
+      <!-- Soulie -->
+      <article class="project" style="--accent: var(--acc-red)">
+        <div class="proj-meta">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--acc-red)"/></svg>
+          <span class="cat">Product development</span>
+          <span class="soft">2026</span>
+        </div>
+        <div class="proj-body">
+          <h3>Soulie, an emotional wellness product for children and parents</h3>
+          <p class="summary measure">Children ages 4 to 10 often feel more than they can name. Soulie helps them understand and express emotions, and helps parents respond with more empathy and confidence.</p>
+
+          <ul class="did">
+            <li>Defined primary and secondary users, product goals, core user journeys, and the MVP feature set.</li>
+            <li>Wrote the product requirements document: feature architecture, interaction principles, emotional check-ins, self-guided support tools, growth journaling, parent-facing insights, and privacy considerations.</li>
+            <li>Used AI-assisted development tools, including OpenAI Codex, to turn requirements into prototype functionality, then refined flows and features over several iterations.</li>
+            <li>Balanced child usability, developmental appropriateness, caregiver needs, and user agency, drawing on my early childhood education background.</li>
+          </ul>
+
+          <div class="visual">
+            <p class="visual-label">The three-stage experience</p>
+            <div class="stages" role="list">
+              <div class="stage" role="listitem"><span>1</span>Know Yourself</div>
+              <div class="stage" role="listitem"><span>2</span>Choose Yourself</div>
+              <div class="stage" role="listitem"><span>3</span>Give Yourself</div>
+            </div>
+            <div class="audiences">
+              <div><b>Children, ages 4 to 10</b>Understand and express what they feel.</div>
+              <div><b>Parents</b>Respond to what their child needs.</div>
+            </div>
+            <ul class="chips" aria-label="Feature areas in the requirements document">
+              <li>Emotional check-ins</li>
+              <li>Self-guided support tools</li>
+              <li>Growth journaling</li>
+              <li>Parent-facing insights</li>
+              <li>Privacy</li>
+            </ul>
+          </div>
+
+          <div class="shots" aria-label="Screens from the Soulie prototype">
+            <figure><img src="assets/soulie-journal.webp" width="720" height="1565" loading="lazy" alt="Soulie Journal Garden screen with buttons to save a moment as a photo, voice note, note, or drawing."><figcaption>Journal</figcaption></figure>
+            <figure><img src="assets/soulie-calm.webp" width="720" height="1565" loading="lazy" alt="Soulie Calm Choices screen listing calming tools such as Glitter Jar, Bubble Breathing, and Wood Fish."><figcaption>Calm tools</figcaption></figure>
+            <figure><img src="assets/soulie-growth.webp" width="720" height="1565" loading="lazy" alt="Soulie Growth screen with a monthly emotions flower chart and a color-coded calendar."><figcaption>Growth</figcaption></figure>
+            <figure><img src="assets/soulie-companion.webp" width="720" height="1565" loading="lazy" alt="Soulie companion, a smiling heart, offering calming choices like Purr Pet, The Window, and Worry Jar."><figcaption>Companion</figcaption></figure>
+          </div>
+
+          <div class="links">
+            <a href="soulie/">Read the Soulie case study</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Recommender -->
+      <article class="project" style="--accent: var(--acc-blue)">
+        <div class="proj-meta">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1.5" y="1.5" width="21" height="21" fill="var(--acc-blue)"/></svg>
+          <span class="cat">Data and AI</span>
+          <span class="soft">Academic team of 5</span>
+        </div>
+        <div class="proj-body">
+          <h3>A restaurant recommender that uses your social graph</h3>
+          <p class="summary measure">Ratings and reviews are generic, and choosing where to eat wears people out. Our team treated restaurant discovery as a personalized ranking problem, using social connections, preferences, location, time, and behavior.</p>
+
+          <ul class="did">
+            <li>Contributed to a hybrid approach that combines LightGCN embeddings, Jaccard-weighted social influence, candidate filtering, and feature-driven ranking on the Yelp Open Dataset.</li>
+            <li>Developed and evaluated an interactive prototype with recommendation explanations, social-graph visualization, score breakdowns, and location-based discovery, deployed as a React and Vite application.</li>
+            <li>Evaluated recommendations on held-out interactions and compared them against a popularity baseline.</li>
+          </ul>
+
+          <div class="visual">
+            <p class="visual-label">NDCG@10, popularity baseline set to 100</p>
+            <div class="bars" role="img" aria-label="Bar chart. Popularity baseline is 100. The proposed model is about 112, roughly 12 percent higher.">
+              <div class="bar-row">
+                <div class="name"><span>Popularity baseline</span><span>100</span></div>
+                <div class="bar base" style="width: 89.3%"></div>
+              </div>
+              <div class="bar-row">
+                <div class="name"><span>Proposed hybrid model</span><span>about 112</span></div>
+                <div class="bar model" style="width: 100%"></div>
+              </div>
+            </div>
+            <p class="bar-note">Bars start at zero and show the relative improvement of about 12%, not raw scores.</p>
+            <dl class="facts">
+              <div><dt>Users evaluated</dt><dd>17,221</dd></div>
+              <div><dt>Held-out interactions</dt><dd>435,744</dd></div>
+              <div><dt>Team size</dt><dd>5</dd></div>
+            </dl>
+          </div>
+        </div>
+      </article>
+
+      <!-- At-home learning -->
+      <article class="project" style="--accent: var(--acc-yellow)">
+        <div class="proj-meta">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,1.5 23,22 1,22" fill="var(--blk-yellow)"/></svg>
+          <span class="cat">Education product</span>
+          <span class="soft">Nov 2023 to Jul 2025</span>
+        </div>
+        <div class="proj-body">
+          <h3>At-home learning products for families</h3>
+          <p class="summary measure">A self-initiated project where I designed more than 20 Montessori-inspired, hands-on activities that parents could run at home without a teaching background.</p>
+
+          <ul class="did">
+            <li>Led each product from end to end: identify the learning need, define the objective, then create materials, guides, and video tutorials.</li>
+            <li>Read parent feedback and website analytics to decide what to improve, then revised the materials and how they were delivered.</li>
+            <li>Built and maintained the digital product with Wix and Canva so families could find and use activities easily.</li>
+          </ul>
+
+          <div class="visual">
+            <p class="visual-label">Skills the activities target</p>
+            <ul class="chips">
+              <li>Phonemic awareness</li>
+              <li>Number sense</li>
+              <li>Executive functioning</li>
+              <li>Other developmental skills</li>
+            </ul>
+          </div>
+
+          <div class="links">
+            <a href="https://zybetty98.wixsite.com/my-site-1/copy-of-at-home-learning" target="_blank" rel="noopener">Browse the materials</a>
+            <a href="https://www.youtube.com/channel/UCm9qVjjSmbxWZbIAFtD3AbQ" target="_blank" rel="noopener">Watch the video tutorials</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- More work -->
+      <div class="more">
+        <div>
+          <h3>Learning materials I designed</h3>
+          <dl>
+            <div class="item"><dt><a href="https://64c8f503-fb77-4df2-92d0-446a33ba2d79.filesusr.com/ugd/fcaf08_7699eb4213d14f69874ca1fcab59a5dc.pdf" target="_blank" rel="noopener">Chinese New Year Busy Book</a></dt><dd>Printable activities for the Year of the Rabbit that teach Chinese New Year culture and the zodiac.</dd></div>
+            <div class="item"><dt><a href="https://64c8f503-fb77-4df2-92d0-446a33ba2d79.filesusr.com/ugd/fcaf08_bea7b829b62742729dd39d5a7b7a5751.pdf" target="_blank" rel="noopener">Christmas Busy Book</a></dt><dd>Printable and interactive activities on shape, size, and color, with English flashcards.</dd></div>
+            <div class="item"><dt><a href="https://64c8f503-fb77-4df2-92d0-446a33ba2d79.filesusr.com/ugd/fcaf08_546aa97db3ef4203b76ed9da01d9848b.pdf" target="_blank" rel="noopener">Montessori infographic series</a></dt><dd>Instagram posts on Montessori values, the teacher's role, and how activities support development.</dd></div>
+            <div class="item"><dt><a href="https://zybetty98.wixsite.com/my-site-1/projects-6-1" target="_blank" rel="noopener">Classroom circle-time calendar</a></dt><dd>A preschool calendar with collaged icons that make the day's content visual.</dd></div>
+          </dl>
+        </div>
+        <div>
+          <h3>Data explorations</h3>
+          <dl>
+            <div class="item"><dt>Airbnb occupancy model, Austin</dt><dd>An XGBoost model that predicts listing occupancy from host behavior, listing attributes, and guest experience, with strategies for hosts.</dd></div>
+            <div class="item"><dt>Youth internet use analysis, Kaggle</dt><dd>Exploratory analysis of how age, gender, and season relate to children's internet use, physical health, and activity levels.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section class="block-section" id="approach">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What teaching taught me about product work</h2>
+        <p class="soft">The daily work of a classroom lines up closely with the daily work of a product team.</p>
+      </div>
+      <table class="maptable">
+        <caption class="visual-label" style="position:absolute;left:-999px">Classroom skills and how they apply to product work</caption>
+        <thead>
+          <tr><th scope="col">In the classroom</th><th scope="col">In product work</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>I read what a child needs from how they play, not only from what they say.</td>
+            <td>User needs analysis. I turn observations, parent feedback, and analytics into defined users, goals, and journeys.</td>
+          </tr>
+          <tr>
+            <td>I adapt one lesson for many learners.</td>
+            <td>Prioritization. I decide what an MVP includes for primary and secondary users, and what waits.</td>
+          </tr>
+          <tr>
+            <td>Lesson prep, assessment, documentation, and family communication all land in the same week.</td>
+            <td>Managing concurrent priorities while keeping every stakeholder informed.</td>
+          </tr>
+          <tr>
+            <td>I explain a child's progress to families in plain language, with clear next steps.</td>
+            <td>Stakeholder communication. I turn data and progress into decisions people can act on.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="block-section" id="experience">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Experience</h2>
+      </div>
+
+      <div class="role">
+        <p class="when">Aug 2025 to present</p>
+        <div>
+          <h3>Kindergarten Associate</h3>
+          <p class="where">Helios School, Sunnyvale, CA</p>
+          <ul>
+            <li>Co-design differentiated, interdisciplinary lessons and projects, turning classroom observations and learner needs into age-appropriate experiences.</li>
+            <li>Plan curriculum and project-based learning with teachers and grade-level teams, and adapt instruction based on student engagement and outcomes.</li>
+            <li>Manage lesson preparation, classroom implementation, student support, assessment, documentation, and family communication in a fast-paced gifted-education environment.</li>
+            <li>Partner with families to share progress, identify where a child needs support, and agree on next steps.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="role">
+        <p class="when">Nov 2023 to Jul 2025</p>
+        <div>
+          <h3>Learning Specialist and Curriculum Designer</h3>
+          <p class="where">Self-initiated At-Home Learning Project, hybrid</p>
+          <ul>
+            <li>Designed and implemented 20+ Montessori-inspired learning products and activities.</li>
+            <li>Led curriculum and product development from learning need to finished materials, guides, and video tutorials.</li>
+            <li>Analyzed parent feedback and website analytics to prioritize improvements. See the project above.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="role">
+        <p class="when">Jul 2022 to Nov 2023</p>
+        <div>
+          <h3>Educational Consultant</h3>
+          <p class="where">Optica Education, remote</p>
+          <ul>
+            <li>Worked with a small consulting team to coordinate monthly planning meetings, professional learning discussions, and student-support initiatives.</li>
+            <li>Built individualized academic and goal-setting plans with structured milestones, reflection activities, and progress checkpoints.</li>
+            <li>Coached students one-on-one and in small groups on executive functioning, time management, confidence, communication, and self-advocacy.</li>
+            <li>Held virtual conferences and wrote progress summaries that gave families clear, actionable next steps.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS + EDUCATION -->
+  <section class="block-section" id="skills">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Skills and education</h2>
+      </div>
+
+      <dl class="skills">
+        <div>
+          <dt>Project and product</dt>
+          <dd>Project management, product requirements, user-centered design, curriculum and product development, user needs analysis, feature prioritization, stakeholder communication, project-based learning</dd>
+        </div>
+        <div>
+          <dt>AI and technical</dt>
+          <dd>Generative AI, AI-assisted development, OpenAI Codex, Python, SQL, data analytics, Tableau</dd>
+        </div>
+        <div>
+          <dt>Tools</dt>
+          <dd>Figma, Notion, Monday.com, Google Workspace, Wix, Canva</dd>
+        </div>
+        <div>
+          <dt>Education expertise</dt>
+          <dd>Early childhood education, gifted education, social-emotional learning, differentiated instruction, Montessori-inspired learning</dd>
+        </div>
+        <div>
+          <dt>Languages</dt>
+          <dd>Mandarin (native), English (fluent), French (beginner)</dd>
+        </div>
+        <div>
+          <dt>Certification</dt>
+          <dd>Responsive Classroom: Classroom Management that Works for Special Area Teachers, Dec 2025</dd>
+        </div>
+      </dl>
+
+      <div class="edu">
+        <h3>Education</h3>
+        <div class="edu-row">
+          <p class="when">Expected 2027</p>
+          <p><b>M.S. in Data Analytics</b><br>Georgia Institute of Technology<br><span class="soft">Python, SQL, data analytics, AI and machine learning foundations</span></p>
+        </div>
+        <div class="edu-row">
+          <p class="when">Sep 2020 to Feb 2022</p>
+          <p><b>M.A. in Early Childhood Education</b><br>Teachers College, Columbia University, New York, NY</p>
+        </div>
+        <div class="edu-row">
+          <p class="when">Aug 2016 to May 2020</p>
+          <p><b>B.A. in Sociology and Rhetoric Studies</b><br>Whitman College, Walla Walla, WA</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="block-section contact" id="contact">
+    <div class="wrap">
+      <h2>Let's talk about your team's next intern.</h2>
+      <p class="measure">I'm looking for product management and tech internships. If you're hiring, or building something for learners or families, I'd like to hear from you.</p>
+      <div class="btn-row">
+        <a class="btn btn-fill" href="mailto:zybetty98@gmail.com">Email zybetty98@gmail.com</a>
+        <a class="btn btn-line" href="https://www.linkedin.com/in/betty-yizhang/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-line" href="assets/Yi-Zhang-Resume.pdf" download>Download resume</a>
+      </div>
+      <div class="ext-links">
+        <a href="https://www.youtube.com/channel/UCm9qVjjSmbxWZbIAFtD3AbQ" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://zybetty98.wixsite.com/my-site-1" target="_blank" rel="noopener">Learning materials site</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">San Jose, CA. &copy; 2026 Yi (Betty) Zhang.</div>
+</footer>
+
+<script>
+  (function () {
+    var steps = {
+      observe: { label: "Observe", text: "Classroom observations, parent feedback, and site analytics show what people need before they can say it." },
+      define:  { label: "Define", text: "Name the users, the goal, and the learning objective for each activity or feature." },
+      build:   { label: "Build", text: "Materials, guides, video tutorials, requirements documents, and prototypes built with Codex." },
+      test:    { label: "Test and refine", text: "Put it in front of kindergarteners, families, or held-out data. Then decide what to change next." }
+    };
+    var cap = document.getElementById("towerCap");
+    var blocks = document.querySelectorAll(".block");
+
+    function show(key) {
+      var s = steps[key];
+      if (!s) return;
+      blocks.forEach(function (b) {
+        b.setAttribute("aria-pressed", b.getAttribute("data-step") === key ? "true" : "false");
+      });
+      cap.textContent = "";
+      var strong = document.createElement("strong");
+      strong.textContent = s.label;
+      cap.appendChild(strong);
+      cap.appendChild(document.createTextNode(s.text));
+    }
+
+    blocks.forEach(function (b) {
+      var key = b.getAttribute("data-step");
+      b.addEventListener("click", function () { show(key); });
+      b.addEventListener("focus", function () { show(key); });
+      b.addEventListener("mouseenter", function () { show(key); });
+    });
+    show("observe");
+  })();
+</script>
+</body>
+</html>
